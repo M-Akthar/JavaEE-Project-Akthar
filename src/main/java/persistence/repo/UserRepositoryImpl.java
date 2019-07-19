@@ -37,6 +37,7 @@ public class UserRepositoryImpl implements UserRepo{
 		current.setUsername(newUser.getUsername());
 		current.setFirstName(newUser.getFirstName());
 		current.setLastName(newUser.getLastName());
+		current.setPassword(newUser.getPassword());
 		
 		this.manager.persist(current);
 		
