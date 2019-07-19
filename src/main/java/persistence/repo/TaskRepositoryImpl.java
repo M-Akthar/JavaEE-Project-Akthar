@@ -7,65 +7,64 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 
+import persistence.domain.Task;
 import persistence.domain.User;
 import util.JSONUtil;
 
 @Transactional(value = TxType.SUPPORTS)
-public class UserRepositoryImpl implements UserRepo{
-
+public class TaskRepositoryImpl implements TaskRepo {
+	
 	@PersistenceContext(unitName = "primary")
 	private EntityManager manager;
 	
 	@Inject
 	private JSONUtil gson;
-	
-	public String getAllUsers() {
+
+	public String getAllTasks() {
 		// TODO Auto-generated method stub
 		
-		TypedQuery<User> query = this.manager.createQuery("SELECT u FROM User u", User.class);
+		TypedQuery<Task> query = this.manager.createQuery("SELECT t FROM Task t", Task.class);
 		return this.gson.getJSONForObject(query.getResultList());
 		
 	}
 
 	@Transactional(value = TxType.REQUIRED)
-	public String updateUser(long id, String user) {
+	
+	public String updateTask(long id, String task) {
 		// TODO Auto-generated method stub
 		
-		User current = this.manager.find(User.class, id);
-		User newUser = this.gson.getObjectForJSON(user, User.class);
+		Task current = this.manager.find(Task.class, id);
+		Task newTask = this.gson.getObjectForJSON(task, Task.class);
 		
-		current.setUsername(newUser.getUsername());
-		current.setFirstName(newUser.getFirstName());
-		current.setLastName(newUser.getLastName());
-		current.setPassword(newUser.getPassword());
+		current.setTaskName(newTask.getTaskName());
 		
 		this.manager.persist(current);
 		
 		return SUCCESS;
-		
 	}
 
 	@Transactional(value = TxType.REQUIRED)
-	public String deleteUser(long id) {
+	public String deleteTask(long id) {
 		// TODO Auto-generated method stub
 		
-		this.manager.remove(this.manager.find(User.class, id));
+		this.manager.remove(this.manager.find(Task.class, id));
 		return SUCCESS;
+
 	}
 
 	@Transactional(value = TxType.REQUIRED)
-	public String createUser(String user) {
+	public String createTask(String task, long userID) {
 		// TODO Auto-generated method stub
 		
-		this.manager.persist(this.gson.getObjectForJSON(user, User.class));
+		User taskOwner = this.manager.find(User.class, userID);
+		Task addedTask = this.gson.getObjectForJSON(task, Task.class);
+		
+		addedTask.setUser(taskOwner);
+		
+		this.manager.persist(addedTask);
+
 		return SUCCESS;
-	}
-
-	public String findUser(long id) {
-		// TODO Auto-generated method stub
 		
-		User result = this.manager.find(User.class, id);
-		return this.gson.getJSONForObject(result);
 	}
-
+	
 }
