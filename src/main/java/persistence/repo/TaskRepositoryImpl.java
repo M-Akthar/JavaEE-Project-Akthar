@@ -52,6 +52,7 @@ public class TaskRepositoryImpl implements TaskRepo {
 
 	}
 
+	@Transactional(value = TxType.REQUIRED)
 	public String createTask(String task, long userID) {
 		// TODO Auto-generated method stub
 		
