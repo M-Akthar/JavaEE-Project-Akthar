@@ -14,17 +14,19 @@ public class User {
 	private String username;
 	private String firstName;
 	private String lastName;
+	private String password;
 	
 	public User() {
 		super();
 	}
 	
-	public User(long userID, String username, String firstName, String lastName) {
+	public User(long userID, String username, String firstName, String lastName, String password) {
 		super();
 		this.userID = userID;
 		this.username = username;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.password = password;
 	}
 	
 	public long getUserID() {
@@ -50,6 +52,12 @@ public class User {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 }
