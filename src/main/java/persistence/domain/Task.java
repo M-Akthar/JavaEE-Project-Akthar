@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Task {
@@ -12,7 +13,10 @@ public class Task {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long taskID;
 	private String taskName;
-	private long userID;
+//	private long userID;
+	
+	@ManyToOne
+	private User user;
 	
 	public Task() {
 		super();
@@ -22,7 +26,7 @@ public class Task {
 		super();
 		this.taskID = taskID;
 		this.taskName = taskName;
-		this.userID = userID;
+//		this.userID = userID;
 	}
 	
 	public long getTaskID() {
@@ -37,11 +41,19 @@ public class Task {
 	public void setTaskName(String taskName) {
 		this.taskName = taskName;
 	}
-	public long getUserID() {
-		return userID;
+//	public long getUserID() {
+//		return userID;
+//	}
+//	public void setUserID(long userID) {
+//		this.userID = userID;
+//	}
+
+	public User getUser() {
+		return user;
 	}
-	public void setUserID(long userID) {
-		this.userID = userID;
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 }
