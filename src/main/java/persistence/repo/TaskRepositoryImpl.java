@@ -52,10 +52,10 @@ public class TaskRepositoryImpl implements TaskRepo {
 
 	}
 
-	public String createTask(String task, String user) {
+	public String createTask(String task, long userID) {
 		// TODO Auto-generated method stub
 		
-		User taskOwner = this.gson.getObjectForJSON(user, User.class);
+		User taskOwner = this.manager.find(User.class, userID);
 		Task addedTask = this.gson.getObjectForJSON(task, Task.class);
 		
 		addedTask.setUser(taskOwner);
