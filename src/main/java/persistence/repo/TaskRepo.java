@@ -11,6 +11,6 @@ public interface TaskRepo {
 
 	public String deleteTask(long id); 
 
-	public String createTask(String task, String user);
+	public String createTask(String task, long userID);
 	
 }
