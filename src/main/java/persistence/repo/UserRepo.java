@@ -13,4 +13,6 @@ public interface UserRepo {
 
 	public String createUser(String user);
 	
+	public String findUser(long id);
+	
 }

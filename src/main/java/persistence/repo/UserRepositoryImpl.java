@@ -61,4 +61,11 @@ public class UserRepositoryImpl implements UserRepo{
 		return SUCCESS;
 	}
 
+	public String findUser(long id) {
+		// TODO Auto-generated method stub
+		
+		User result = this.manager.find(User.class, id);
+		return this.gson.getJSONForObject(result);
+	}
+
 }
