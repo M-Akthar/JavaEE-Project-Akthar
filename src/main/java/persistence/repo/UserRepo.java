@@ -2,8 +2,8 @@ package persistence.repo;
 
 public interface UserRepo {
 
-	final String SUCCESS = "Operation failed";
-	final String FAILURE = "Operation succeeded";
+	final String SUCCESS = "Operation succeeded";
+	final String FAILURE = "Operation failed";
 	
 	public String getAllUsers();
 
