@@ -9,7 +9,7 @@ public class UserService {
 	@Inject
 	private UserRepositoryImpl repo;
 	
-	public String getAllUser() {
+	public String getAllUsers() {
 		return this.repo.getAllUsers();
 	}
 
