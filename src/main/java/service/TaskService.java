@@ -12,6 +12,10 @@ public class TaskService {
 	public String getAllTasks() {
 		return this.taskRepo.getAllTasks();
 	}
+	
+	public String getTask(long id) {
+		return this.taskRepo.getTask(id);
+	}
 
 	public String updateTask(long id, String task) {
 		return this.taskRepo.updateTask(id, task);

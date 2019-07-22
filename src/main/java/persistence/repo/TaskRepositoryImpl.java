@@ -27,6 +27,11 @@ public class TaskRepositoryImpl implements TaskRepo {
 		return this.gson.getJSONForObject(query.getResultList());
 		
 	}
+	
+	public String getTask(long userID) {
+		TypedQuery<Task> query = this.manager.createQuery("SELECT t FROM Task t WHERE t.USERID = " + userID, Task.class);
+		return this.gson.getJSONForObject(query.getResultList());
+	}
 
 	@Transactional(value = TxType.REQUIRED)
 	

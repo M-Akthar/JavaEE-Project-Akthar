@@ -6,6 +6,8 @@ public interface TaskRepo {
 	final String FAILURE = "Operation failed";
 	
 	public String getAllTasks();
+	
+	public String getTask(long id);
 
 	public String updateTask(long id, String task);
 

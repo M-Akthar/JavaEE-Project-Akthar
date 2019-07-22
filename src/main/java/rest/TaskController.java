@@ -20,6 +20,12 @@ public class TaskController {
 	public String getAllTasks() {
 		return this.service.getAllTasks();
 	}
+	
+	@GET
+	@Path("/getTask/{id}")
+	public String getTask(@PathParam("id") long id) {
+		return this.service.getTask(id);
+	}
 
 	@POST
 	@Path("/update/{id}")
