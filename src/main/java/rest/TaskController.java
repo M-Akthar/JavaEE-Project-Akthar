@@ -22,9 +22,9 @@ public class TaskController {
 	}
 	
 	@GET
-	@Path("/getTask/{id}")
-	public String getTask(@PathParam("id") long id) {
-		return this.service.getTask(id);
+	@Path("/getUserTasks/{id}")
+	public String getUserTasks(@PathParam("id") long id) {
+		return this.service.getUserTasks(id);
 	}
 
 	@POST

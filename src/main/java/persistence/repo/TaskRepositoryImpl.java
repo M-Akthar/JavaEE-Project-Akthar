@@ -1,5 +1,8 @@
 package persistence.repo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,9 +31,21 @@ public class TaskRepositoryImpl implements TaskRepo {
 		
 	}
 	
-	public String getTask(long userID) {
-		TypedQuery<Task> query = this.manager.createQuery("SELECT t FROM Task t WHERE t.USERID = " + userID, Task.class);
-		return this.gson.getJSONForObject(query.getResultList());
+	public String getUserTasks(long userID) {
+		TypedQuery<Task> query = this.manager.createQuery("SELECT t FROM Task t", Task.class);
+		// I was unable to write the JPQL to filter the query using user id.
+		// So I filtered it myself
+		
+		List<Task> taskDB = query.getResultList();
+		List<Task> userTasks = new ArrayList<>();
+		
+		for(Task t: taskDB) {
+			if(t.getUser().getUserID() == userID) {
+				userTasks.add(t);
+			}
+		}
+		
+		return this.gson.getJSONForObject(userTasks);
 	}
 
 	@Transactional(value = TxType.REQUIRED)

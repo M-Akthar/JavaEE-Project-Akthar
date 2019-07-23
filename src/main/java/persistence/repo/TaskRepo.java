@@ -7,7 +7,7 @@ public interface TaskRepo {
 	
 	public String getAllTasks();
 	
-	public String getTask(long id);
+	public String getUserTasks(long id);
 
 	public String updateTask(long id, String task);
 

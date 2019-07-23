@@ -13,8 +13,8 @@ public class TaskService {
 		return this.taskRepo.getAllTasks();
 	}
 	
-	public String getTask(long id) {
-		return this.taskRepo.getTask(id);
+	public String getUserTasks(long id) {
+		return this.taskRepo.getUserTasks(id);
 	}
 
 	public String updateTask(long id, String task) {

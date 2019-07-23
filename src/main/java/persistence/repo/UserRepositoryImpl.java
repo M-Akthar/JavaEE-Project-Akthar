@@ -48,6 +48,9 @@ public class UserRepositoryImpl implements UserRepo{
 //		usernames should be unique and would require validation checks
 //		At this point newUser.getUsername() will be null as I won't have an input field for a username update
 		
+//		For validation in the future it might be worth creating a method that evaluates to true or false
+//		depending on whether a username exists already or not
+		
 //		current.setUsername(newUser.getUsername());
 		current.setFirstName(newUser.getFirstName());
 		current.setLastName(newUser.getLastName());
