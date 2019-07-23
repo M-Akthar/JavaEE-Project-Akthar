@@ -38,5 +38,11 @@ public class UserController {
 	public String createUser(String user) {
 		return this.service.createUser(user);
 	}
+	
+	@POST
+	@Path("/login")
+	public String login(String user) {
+		return this.service.login(user);
+	}
 
 }

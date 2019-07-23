@@ -82,4 +82,27 @@ public class UserRepositoryImpl implements UserRepo{
 		return this.gson.getJSONForObject(result);
 	}
 
+	public String login(String user) {
+		// TODO Auto-generated method stub
+		long userID = -1;
+		User aUser = this.gson.getObjectForJSON(user, User.class);
+		String username = aUser.getUsername();
+		String password = aUser.getPassword();
+		TypedQuery<User> query = this.manager.createQuery("Select u From User u WHERE username='"+username+
+				"' AND password ='"+password+"'", User.class);
+		
+		List<User> result = query.getResultList();
+		
+		// The following loop only gets executed if the typed query returns a result.
+		for(User u : result) {
+			userID = u.getUserID();
+		}
+		
+		if(userID == -1) {
+			return "{\"message\": \"Account not found\"}";			
+		} else {
+			return "{\"USERID\": \""+userID+"\"}";			
+		}
+	}
+
 }

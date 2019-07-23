@@ -21,4 +21,6 @@ public interface UserRepo {
 	
 	public String findUser(long id);
 	
+	public String login(String user);
+	
 }

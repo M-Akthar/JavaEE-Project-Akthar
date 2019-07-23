@@ -29,10 +29,10 @@ public class UserService {
 
 	public String createUser(String user) {
 		List<User> userDB = this.repo.getListOfAllUsers();
-		User newUser = gson.getObjectForJSON(user, User.class);
-		String newUsername = newUser.getUsername();
 		
-		if(userDB.size() >= 1 && userDB != null) {
+		String newUsername = gson.getObjectForJSON(user, User.class).getUsername();
+		
+		if(userDB != null) {
 			for(User u : userDB) {
 				if(u.getUsername().equals(newUsername)) {
 					return "{\"message\": \"username already exists\"}";
@@ -41,6 +41,10 @@ public class UserService {
 		}
 		
 		return this.repo.createUser(user);
+	}
+	
+	public String login(String user) {
+		return this.repo.login(user);
 	}
 
 }
