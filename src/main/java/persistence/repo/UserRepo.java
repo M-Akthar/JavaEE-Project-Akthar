@@ -1,11 +1,17 @@
 package persistence.repo;
 
+import java.util.List;
+
+import persistence.domain.User;
+
 public interface UserRepo {
 
-	final String SUCCESS = "Operation succeeded";
-	final String FAILURE = "Operation failed";
+	final String SUCCESS = "{\"message\": \"Success\"}";
+	final String FAILURE = "{\"message\": \"Failed\"}";
 	
 	public String getAllUsers();
+	
+	public List<User> getListOfAllUsers();
 
 	public String updateUser(long id, String user);
 

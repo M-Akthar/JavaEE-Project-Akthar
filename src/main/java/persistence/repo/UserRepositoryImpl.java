@@ -1,5 +1,7 @@
 package persistence.repo;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,6 +28,14 @@ public class UserRepositoryImpl implements UserRepo{
 		return this.gson.getJSONForObject(query.getResultList());
 		
 	}
+	
+	public List<User> getListOfAllUsers() {	
+		// This was created to be used during the create user method in the service layer.
+		
+		TypedQuery<User> query = this.manager.createQuery("SELECT u FROM User u", User.class);
+		return query.getResultList();
+		
+	}
 
 	@Transactional(value = TxType.REQUIRED)
 	public String updateUser(long id, String user) {
@@ -34,7 +44,11 @@ public class UserRepositoryImpl implements UserRepo{
 		User current = this.manager.find(User.class, id);
 		User newUser = this.gson.getObjectForJSON(user, User.class);
 		
-		current.setUsername(newUser.getUsername());
+//		I have commented out the set username as I won't allow username changes for now.
+//		usernames should be unique and would require validation checks
+//		At this point newUser.getUsername() will be null as I won't have an input field for a username update
+		
+//		current.setUsername(newUser.getUsername());
 		current.setFirstName(newUser.getFirstName());
 		current.setLastName(newUser.getLastName());
 		current.setPassword(newUser.getPassword());

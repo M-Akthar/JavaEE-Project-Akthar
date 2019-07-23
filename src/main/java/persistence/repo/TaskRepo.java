@@ -2,8 +2,8 @@ package persistence.repo;
 
 public interface TaskRepo {
 
-	final String SUCCESS = "Operation succeeded";
-	final String FAILURE = "Operation failed";
+	final String SUCCESS = "{\"message\": \"Success\"}";
+	final String FAILURE = "{\"message\": \"Failed\"}";
 	
 	public String getAllTasks();
 	
