@@ -43,6 +43,10 @@ public class UserService {
 		return this.repo.createUser(user);
 	}
 	
+	public String findUser(long id) {
+		return this.repo.findUser(id);
+	}
+	
 	public String login(String user) {
 		return this.repo.login(user);
 	}

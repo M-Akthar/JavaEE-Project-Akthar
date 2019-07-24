@@ -20,6 +20,12 @@ public class UserController {
 	public String getAllUsers() {
 		return this.service.getAllUsers();
 	}
+	
+	@GET
+	@Path("/getUser/{id}")
+	public String findUser(@PathParam("id") long id) {
+		return this.service.findUser(id);
+	}
 
 	@POST
 	@Path("/update/{id}")

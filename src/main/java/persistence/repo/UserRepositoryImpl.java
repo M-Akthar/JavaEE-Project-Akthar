@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 
+import persistence.domain.Task;
 import persistence.domain.User;
 import util.JSONUtil;
 
@@ -65,6 +66,18 @@ public class UserRepositoryImpl implements UserRepo{
 	@Transactional(value = TxType.REQUIRED)
 	public String deleteUser(long id) {
 		// TODO Auto-generated method stub
+		
+		TypedQuery<Task> query = this.manager.createQuery("SELECT t FROM Task t", Task.class);
+		
+		List<Task> taskDB = query.getResultList();
+		
+		// The following loops deletes all tasks belonging to the user before deleting the user.
+		// This is to prevent orphan tasks and any related errors
+		for(Task t: taskDB) {
+			if(t.getUser().getUserID() == id) {
+				this.manager.remove(this.manager.find(Task.class, t.getTaskID()));
+			}
+		}
 		
 		this.manager.remove(this.manager.find(User.class, id));
 		return SUCCESS;
