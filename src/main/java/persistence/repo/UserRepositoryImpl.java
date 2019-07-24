@@ -109,7 +109,7 @@ public class UserRepositoryImpl implements UserRepo{
 		
 		List<User> result = query.getResultList();
 		
-		// The following loop only gets executed if the typed query returns a result.
+		// The following loop only gets executed if the typed query returns a result. Reminder: Discuss with Jordan
 		for(User u : result) {
 			userID = u.getUserID();
 		}
